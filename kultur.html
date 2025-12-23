@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kültür — HaberSitesi</title>
+
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#2563eb;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+.container{max-width:1100px;margin:auto;padding:20px}
+
+/* Header */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:42px;height:42px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:#fff;
+  font-weight:800;
+  display:grid;place-items:center;
+}
+nav a{
+  margin-left:16px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:var(--accent)}
+
+.page-title{font-size:28px;margin:20px 0}
+
+/* Cards */
+.card{
+  background:var(--card);
+  padding:18px;
+  border-radius:var(--radius);
+  margin-bottom:24px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 32px rgba(0,0,0,.12);
+}
+.card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+}
+.views{font-size:13px;color:var(--muted)}
+.card h3{margin:6px 0 8px}
+.card p{margin:0;color:#334155}
+
+/* Modal */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal{
+  background:var(--card);
+  max-width:900px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:var(--radius);
+  padding:20px;
+}
+.modal img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  border-radius:12px;
+  margin:14px 0;
+}
+.close-btn{
+  background:#ef4444;
+  border:none;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+footer{
+  margin:40px 0 10px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+@media(max-width:600px){
+  .card img{height:200px}
+  header{flex-direction:column;align-items:flex-start;gap:12px}
+  .modal img{height:220px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">HS</div>
+    <div>
+      <strong>HaberSitesi</strong><br>
+      <small style="color:var(--muted)">Kültür</small>
+    </div>
+  </div>
+  <nav>
+    <a href="habersitesi.html">Ana Sayfa</a>
+    <a href="gundem.html">Gündem</a>
+    <a href="ekonomi.html">Ekonomi</a>
+    <a href="spor.html">Spor</a>
+  </nav>
+</header>
+
+<h1 class="page-title">Kültür Haberleri</h1>
+
+<!-- HABERLER -->
+<article class="card" onclick="openModal(1)">
+  <img src="images/sanat.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Kültür</span>
+    <span class="views">👁 19.432</span>
+  </div>
+  <h3>İstanbul’da Yeni Çağdaş Sanat Sergisi Açıldı</h3>
+  <p>Genç sanatçıların eserleri büyük ilgi görüyor.</p>
+</article>
+
+<article class="card" onclick="openModal(2)">
+  <img src="images/festival1.jfif">
+  <div class="meta">
+    <span>24 Aralık 2025 • Kültür</span>
+    <span class="views">👁 16.205</span>
+  </div>
+  <h3>Film Festivali Rekor Katılımla Sona Erdi</h3>
+  <p>Festivalde 80’den fazla film gösterildi.</p>
+</article>
+
+<article class="card" onclick="openModal(3)">
+  <img src="images/tiyatro.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Kültür</span>
+    <span class="views">👁 14.188</span>
+  </div>
+  <h3>Tarihi Tiyatro Yeniden Sanatseverlerle Buluştu</h3>
+  <p>Restorasyonu tamamlanan tiyatro kapılarını açtı.</p>
+</article>
+
+<article class="card" onclick="openModal(4)">
+  <img src="images/album.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Kültür</span>
+    <span class="views">👁 12.902</span>
+  </div>
+  <h3>Yeni Albüm Dijital Platformlarda Yayında</h3>
+  <p>Sanatçının uzun süredir beklenen albümü çıktı.</p>
+</article>
+
+<article class="card" onclick="openModal(5)">
+  <img src="images/muze.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Kültür</span>
+    <span class="views">👁 11.347</span>
+  </div>
+  <h3>Müzeler Yıl Sonuna Kadar Ücretsiz</h3>
+  <p>Kültür Bakanlığı’ndan ziyaretçilere müjde.</p>
+</article>
+
+<article class="card" onclick="openModal(6)">
+  <img src="images/yerel.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Kültür</span>
+    <span class="views">👁 9.865</span>
+  </div>
+  <h3>Yerel Tiyatro Oyununa Yoğun İlgi</h3>
+  <p>Yeni sezonda salonlar doluyor.</p>
+</article>
+
+<footer>© 2025 HaberSitesi — Kültür</footer>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong id="modalTitle"></strong>
+      <button class="close-btn" onclick="closeModal()">Kapat</button>
+    </div>
+    <div id="modalMeta" class="meta"></div>
+    <img id="modalImg">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const news={
+1:{
+  title:"İstanbul’da Yeni Çağdaş Sanat Sergisi Açıldı",
+  meta:"24 Aralık 2025 • Kültür • 👁 19.432",
+  img:"images/sanat.jpg",
+  content:"İstanbul’un kültür ve sanat merkezlerinden birinde açılan yeni çağdaş sanat sergisi, genç ve deneyimli sanatçıların eserlerini aynı çatı altında buluşturdu.\n\nResim, heykel, dijital sanat ve enstalasyon çalışmalarının yer aldığı sergide, günümüz dünyasının sosyal ve bireysel meselelerine odaklanan eserler dikkat çekiyor. Küratörler, serginin özellikle genç sanatçılara görünürlük kazandırmayı amaçladığını belirtiyor.\n\nSanatseverlerin yoğun ilgi gösterdiği serginin iki ay boyunca açık kalacağı, belirli günlerde sanatçı söyleşileri ve atölye çalışmalarının da düzenleneceği açıklandı."
+},
+
+2:{
+  title:"Film Festivali Rekor Katılımla Sona Erdi",
+  meta:"24 Aralık 2025 • Kültür • 👁 16.205",
+  img:"images/festival1.jfif",
+  content:"Bu yıl düzenlenen film festivali, yerli ve yabancı binlerce sinemaseveri ağırlayarak rekor katılıma sahne oldu.\n\nFestival kapsamında farklı ülkelerden uzun metrajlı filmler, belgeseller ve kısa film seçkileri izleyiciyle buluştu. Gösterimlerin yanı sıra yönetmen söyleşileri ve sinema atölyeleri de yoğun ilgi gördü.\n\nOrganizatörler, festivalin uluslararası bilinirliğinin her geçen yıl arttığını ve gelecek yıllarda programın daha da genişletileceğini ifade etti."
+},
+
+3:{
+  title:"Tarihi Tiyatro Yeniden Sanatseverlerle Buluştu",
+  meta:"24 Aralık 2025 • Kültür • 👁 14.188",
+  img:"images/tiyatro.jpg",
+  content:"Uzun süredir restorasyon çalışmaları devam eden tarihi tiyatro binası, yenilenen yüzüyle sanatseverlerin karşısına çıktı.\n\nAçılış gecesinde sahnelenen klasik tiyatro oyunu, izleyicilerden büyük beğeni topladı. Restorasyon sürecinde binanın özgün mimarisinin korunmasına özen gösterildiği belirtildi.\n\nYetkililer, tiyatronun bundan sonra hem yerli hem de uluslararası tiyatro topluluklarına ev sahipliği yapacağını açıkladı."
+},
+
+4:{
+  title:"Yeni Albüm Dijital Platformlarda Yayında",
+  meta:"24 Aralık 2025 • Kültür • 👁 12.902",
+  img:"images/album.jpg",
+  content:"Ünlü sanatçının merakla beklenen yeni albümü, dijital müzik platformlarında dinleyicilerle buluştu.\n\nAlbümde farklı müzik türlerinin bir araya getirildiği, söz ve bestelerin sanatçının son dönem çalışmalarını yansıttığı ifade ediliyor. Yayınlandığı ilk gün müzik listelerine hızlı bir giriş yapan albüm, sosyal medyada da geniş yankı uyandırdı.\n\nSanatçı, albüm kapsamında önümüzdeki aylarda konser turnesine çıkmayı planladığını duyurdu."
+},
+
+5:{
+  title:"Müzeler Yıl Sonuna Kadar Ücretsiz",
+  meta:"24 Aralık 2025 • Kültür • 👁 11.347",
+  img:"images/muze.jpg",
+  content:"Kültür ve Turizm Bakanlığı, yıl sonuna kadar müzelerin ücretsiz olarak ziyaret edilebileceğini açıkladı.\n\nUygulamanın, kültürel mirasın daha geniş kitlelere ulaştırılması ve müze ziyaretlerinin artırılması amacıyla hayata geçirildiği belirtildi. Özellikle öğrenciler ve ailelerin bu uygulamadan yoğun şekilde faydalanması bekleniyor.\n\nYetkililer, ücretsiz ziyaret döneminde müzelerde çeşitli rehberli turlar ve etkinliklerin de düzenleneceğini ifade etti."
+},
+
+6:{
+  title:"Yerel Tiyatro Oyununa Yoğun İlgi",
+  meta:"24 Aralık 2025 • Kültür • 👁 9.865",
+  img:"images/yerel.jpg",
+  content:"Yerel tiyatro gruplarının sahnelediği oyunlar, son dönemde sanatseverlerden yoğun ilgi görüyor.\n\nToplumsal konuları ele alan ve farklı anlatım teknikleri kullanan oyunların birçok temsilinde salonların dolduğu gözlemleniyor. Sanatçılar, izleyicinin bu ilgisinin kendilerini motive ettiğini belirtiyor.\n\nKültür çevreleri, yerel tiyatro sahnelerinin desteklenmesinin şehirlerin kültürel yaşamına önemli katkı sunduğunu vurguluyor."
+}
+};
+
+function openModal(id){
+  const n=news[id];
+  modalTitle.textContent=n.title;
+  modalMeta.textContent=n.meta;
+  modalImg.src=n.img;
+  modalContent.innerHTML=`<p>${n.content}</p>`;
+  overlay.style.display="flex";
+}
+function closeModal(){
+  overlay.style.display="none";
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
+});
+</script>
+
+</body>
+</html>

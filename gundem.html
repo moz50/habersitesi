@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gündem — HaberSitesi</title>
+
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#2563eb;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+.container{max-width:1100px;margin:auto;padding:20px}
+
+/* Header */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:42px;height:42px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:#fff;
+  font-weight:800;
+  display:grid;place-items:center;
+}
+nav a{
+  margin-left:16px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:var(--accent)}
+
+.page-title{font-size:28px;margin:20px 0}
+
+/* Cards */
+.card{
+  background:var(--card);
+  padding:18px;
+  border-radius:var(--radius);
+  margin-bottom:24px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 32px rgba(0,0,0,.12);
+}
+.card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+}
+.views{font-size:13px;color:var(--muted)}
+.card h3{margin:6px 0 8px}
+.card p{margin:0;color:#334155}
+
+/* Modal */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal{
+  background:var(--card);
+  max-width:900px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:var(--radius);
+  padding:20px;
+}
+.modal img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  border-radius:12px;
+  margin:14px 0;
+}
+.close-btn{
+  background:#ef4444;
+  border:none;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+footer{
+  margin:40px 0 10px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+@media(max-width:600px){
+  .card img{height:200px}
+  header{flex-direction:column;align-items:flex-start;gap:12px}
+  .modal img{height:220px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">HS</div>
+    <div>
+      <strong>HaberSitesi</strong><br>
+      <small style="color:var(--muted)">Gündem</small>
+    </div>
+  </div>
+  <nav>
+    <a href="habersitesi.html">Ana Sayfa</a>
+    <a href="ekonomi.html">Ekonomi</a>
+    <a href="kultur.html">Kültür</a>
+    <a href="spor.html">Spor</a>
+  </nav>
+</header>
+
+<h1 class="page-title">Gündem Haberleri</h1>
+
+<!-- HABERLER -->
+<article class="card" onclick="openModal(1)">
+  <img src="images/tbmm.jfif">
+  <div class="meta">
+    <span>24 Aralık 2025 • Gündem</span>
+    <span class="views">👁 18.432</span>
+  </div>
+  <h3>TBMM’de Yeni Yıl Öncesi Kritik Düzenlemeler</h3>
+  <p>TBMM Genel Kurulu’nda ekonomi ve sosyal politikalar ele alınıyor.</p>
+</article>
+
+<article class="card" onclick="openModal(2)">
+  <img src="images/buzlanma.jfif">
+  <div class="meta">
+    <span>24 Aralık 2025 • Gündem</span>
+    <span class="views">👁 25.910</span>
+  </div>
+  <h3>Meteoroloji’den Kar ve Buzlanma Uyarısı</h3>
+  <p>Birçok bölgede yoğun kar yağışı bekleniyor.</p>
+</article>
+
+<article class="card" onclick="openModal(3)">
+  <img src="images/belediye.jpeg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Gündem</span>
+    <span class="views">👁 12.087</span>
+  </div>
+  <h3>Belediyelerden Yıl Sonu Sosyal Destek Paketleri</h3>
+  <p>Dar gelirli vatandaşlara yönelik destekler açıklandı.</p>
+</article>
+
+<footer>© 2025 HaberSitesi — Gündem</footer>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong id="modalTitle"></strong>
+      <button class="close-btn" onclick="closeModal()">Kapat</button>
+    </div>
+    <div id="modalMeta" class="meta"></div>
+    <img id="modalImg">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const news = {
+  1:{
+  title:"TBMM’de Yeni Yıl Öncesi Kritik Düzenlemeler",
+  meta:"24 Aralık 2025 • Gündem • 👁 18.432",
+  img:"images/tbmm.jfif",
+  content:"Türkiye Büyük Millet Meclisi Genel Kurulu’nda yeni yıl öncesinde yasalaştırılması planlanan kritik düzenlemeler görüşülmeye devam ediyor.\n\nGündemde ekonomi, eğitim ve sosyal destek başlıkları öne çıkarken özellikle dar gelirli vatandaşları ilgilendiren düzenlemelerin öncelikli olarak ele alındığı belirtildi. Vergi düzenlemeleri, öğrencilere yönelik destekler ve emekli maaşlarına ilişkin başlıklar komisyonda yoğun tartışmalara sahne oldu.\n\nMeclis kaynakları, bazı düzenlemelerin yıl bitmeden yasalaşmasının hedeflendiğini, diğer başlıkların ise yeni yasama dönemine bırakılabileceğini ifade ediyor."
+},
+
+2:{
+  title:"Meteoroloji’den Kar ve Buzlanma Uyarısı",
+  meta:"24 Aralık 2025 • Gündem • 👁 25.910",
+  img:"images/buzlanma.jfif",
+  content:"Meteoroloji Genel Müdürlüğü tarafından yapılan son değerlendirmelerde, ülkenin iç ve doğu kesimlerinde yoğun kar yağışı ve buzlanma beklendiği açıklandı.\n\nÖzellikle İç Anadolu, Doğu Anadolu ve yüksek kesimlerde ulaşımda aksamalar, don olayları ve görüş mesafesinde azalma riskine dikkat çekildi. Yetkililer, sürücülerin kış lastiği ve zincir olmadan trafiğe çıkmamaları konusunda uyarıda bulundu.\n\nBelediye ekiplerinin olası olumsuzluklara karşı hazır durumda olduğu, vatandaşların resmi duyuruları takip etmelerinin önem taşıdığı vurgulandı."
+},
+
+3:{
+  title:"Belediyelerden Yıl Sonu Sosyal Destek Paketleri",
+  meta:"24 Aralık 2025 • Gündem • 👁 12.087",
+  img:"images/belediye.jpeg",
+  content:"Yıl sonunun yaklaşmasıyla birlikte büyükşehir ve ilçe belediyeleri, sosyal destek paketlerini kamuoyuyla paylaşmaya başladı.\n\nAçıklanan paketlerde gıda yardımları, yakacak desteği, eğitim destekleri ve dar gelirli ailelere yönelik nakdi yardımlar öne çıkıyor. Belediyeler, başvuruların dijital platformlar üzerinden alınacağını ve ihtiyaç sahiplerine hızlı şekilde ulaştırılacağını belirtti.\n\nYetkililer, sosyal destek çalışmalarının yeni yılın ilk aylarında da artarak devam edeceğini ifade ederken, vatandaşlardan resmi kanallar dışında yapılan çağrılara itibar etmemeleri istendi."
+}
+};
+
+function openModal(id){
+  const n=news[id];
+  document.getElementById("modalTitle").textContent=n.title;
+  document.getElementById("modalMeta").textContent=n.meta;
+  document.getElementById("modalImg").src=n.img;
+  document.getElementById("modalContent").innerHTML=`<p>${n.content}</p>`;
+  document.getElementById("overlay").style.display="flex";
+}
+function closeModal(){
+  document.getElementById("overlay").style.display="none";
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
+});
+</script>
+
+</body>
+</html>

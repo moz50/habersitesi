@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HaberSitesi — Güncel Haberler</title>
+<meta name="description" content="Modern, tek dosyalık örnek haber sitesi.">
+
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#2563eb;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* Layout */
+.container{max-width:1150px;margin:auto;padding:20px}
+
+/* Header */
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter: blur(10px);
+  background:rgba(244,246,251,.75);
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:44px;height:44px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:#fff;
+  font-weight:800;
+  display:grid;place-items:center;
+}
+nav a{
+  margin-left:18px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:600;
+}
+nav a:hover{color:var(--accent)}
+
+/* Hero */
+.hero{
+  display:grid;
+  grid-template-columns:1.4fr .6fr;
+  gap:24px;
+  margin-top:24px;
+}
+.main-card{
+  background:var(--card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  cursor:pointer;
+  transition:.3s;
+}
+.main-card:hover{transform:translateY(-4px)}
+.main-card img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+}
+.main-content{padding:18px}
+.meta{font-size:13px;color:var(--muted)}
+.main-card h2{margin:8px 0}
+.excerpt{color:#334155}
+
+/* Sidebar */
+.sidebar .widget{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  margin-bottom:16px;
+}
+.sidebar a{
+  text-decoration:none;
+  color:var(--text);
+}
+.sidebar a:hover{color:var(--accent)}
+
+/* Grid */
+section h3{margin-top:40px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 32px rgba(0,0,0,.12);
+}
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+.card-body{padding:14px}
+.card h3{margin:0 0 6px;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+
+/* Footer */
+footer{
+  margin:50px 0 20px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Modal */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal{
+  background:var(--card);
+  max-width:900px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:var(--radius);
+  padding:20px;
+}
+.close-btn{
+  background:#ef4444;
+  border:none;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .main-card img{height:220px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner container">
+    <div class="brand">
+      <div class="logo">HS</div>
+      <div>
+        <strong>HaberSitesi</strong><br>
+        <small style="color:var(--muted)">Güncel & Yerel</small>
+      </div>
+    </div>
+    <nav>
+      <a href="gundem.html">Gündem</a> <a href="ekonomi.html">Ekonomi</a> <a href="kultur.html">Kültür</a> <a href="spor.html">Spor</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+<section class="hero">
+  <article class="main-card" onclick="openArticle(1)">
+    <img src="images/libya.jpg" alt="Fabrika">
+    <div class="main-content">
+      <div class="meta">24 Aralık 2025 • Gündem</div>
+      <h2>Türkiye-Libya Ortak Tatbikatı Başladı</h2>
+      <p class="excerpt">Türk ve Libya askerleri deniz tatbikatına katıldı.</p>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="widget">
+      <strong>Öne Çıkanlar</strong>
+      <ul>
+        <li><a href="#" onclick="openArticle(2);return false">Yeni medya semineri yoğun ilgi gördü</a></li>
+        <li><a href="#" onclick="openArticle(3);return false">Meteoroloji yağış için uyardı</a></li>
+      </ul>
+    </div>
+    <div class="widget">
+      <strong>Kategoriler</strong>
+      <div style="color:var(--muted)">Ekonomi • Gündem • Kültür • Spor</div>
+    </div>
+  </aside>
+</section>
+
+<section>
+  <h3>Son Haberler</h3>
+  <div class="grid" id="articles"></div>
+</section>
+
+<footer>© 2025 HaberSitesi — Örnek Tasarım</footer>
+</div>
+
+<!-- Modal -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong id="modal-title"></strong>
+      <button class="close-btn" onclick="closeModal()">Kapat</button>
+    </div>
+    <div id="modal-meta" class="meta"></div>
+    <img id="modal-img" style="width:100%;margin:14px 0;border-radius:12px">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+const sample = [
+  {
+  id: 1,
+  title: "Türkiye-Libya Ortak Tatbikatı Başladı",
+  category: "Gündem",
+  date: "24 Aralık 2025",
+  img: "images/libya.jpg",
+  excerpt: "Türk ve Libya askerleri deniz tatbikatına katıldı.",
+  content: "Milli Savunma Bakanlığı’ndan yapılan açıklamaya göre, Türkiye ile Libya Silahlı Kuvvetleri arasında geniş kapsamlı deniz tatbikatı bugün itibarıyla başladı.\n\nAkdeniz açıklarında gerçekleştirilen tatbikatta deniz, hava ve kara unsurlarının koordinasyonu test ediliyor. Tatbikat kapsamında arama-kurtarma, deniz güvenliği, ortak harekât planlaması ve kriz senaryoları üzerinde duruluyor.\n\nYetkililer, tatbikatın iki ülke arasındaki askeri iş birliğini güçlendirmeyi ve bölgesel güvenliğe katkı sağlamayı amaçladığını belirtti. Tatbikata çok uluslu gözlemcilerin de katıldığı öğrenildi."
+},
+{
+  id: 2,
+  title: "Meteoroloji’den Yoğun Kar Uyarısı",
+  category: "Gündem",
+  date: "24 Aralık 2025",
+  img: "images/kar.jfif",
+  excerpt: "Yurdun büyük bölümünde kar ve buzlanma bekleniyor.",
+  content: "Meteoroloji Genel Müdürlüğü, yaptığı son değerlendirmelerde yurdun kuzey ve iç kesimlerinde etkili olacak yoğun kar yağışı ve buzlanmaya karşı uyarıda bulundu.\n\nÖzellikle İç Anadolu, Doğu Anadolu ve Karadeniz’in iç kesimlerinde ulaşımda aksamalar, don ve tipi riskinin yüksek olduğu belirtildi. Yetkililer, sürücülerin zincirsiz yola çıkmamaları ve mecbur kalmadıkça uzun yolculuklardan kaçınmaları gerektiğini vurguladı.\n\nBelediye ekiplerinin olası olumsuzluklara karşı hazır bekletildiği bildirildi."
+},
+{
+  id: 3,
+  title: "Borsa İstanbul Endeksi Rekor Seviyede",
+  category: "Ekonomi",
+  date: "24 Aralık 2025",
+  img: "images/borsa.jpg",
+  excerpt: "BIST 100, yabancı yatırımcı ilgisiyle yükseldi.",
+  content: "Borsa İstanbul BIST 100 endeksi, artan yabancı yatırımcı ilgisi ve olumlu ekonomik beklentilerle birlikte tarihî rekor seviyesine ulaştı.\n\nBankacılık ve sanayi hisselerindeki yükselişin endeksi yukarı taşıdığı görülürken, uzmanlar yıl sonu bilanço beklentilerinin piyasayı desteklediğini ifade ediyor.\n\nAnalistler, küresel piyasalardaki iyimser havanın devam etmesi halinde yükseliş trendinin kısa vadede sürebileceğini, ancak yatırımcıların temkinli olması gerektiğini vurguluyor."
+},
+{
+  id: 4,
+  title: "Türkiye’nin Otomotiv Üretimi Artıyor",
+  category: "Ekonomi",
+  date: "23 Aralık 2025",
+  img: "images/togg.jpg",
+  excerpt: "Yerli otomobil fabrikaları üretimi artırdı.",
+  content: "Türkiye’nin otomotiv sektöründe üretim rakamları yükselişini sürdürüyor. Bursa, Sakarya ve Kocaeli’deki fabrikalarda üretim kapasitesi artırıldı.\n\nSektör temsilcileri, hem iç pazardaki talep hem de ihracat siparişlerinin artmasının bu büyümede etkili olduğunu belirtti. Elektrikli ve hibrit araç üretimine yönelik yatırımların da hız kazandığı ifade edildi.\n\nUzmanlar, otomotiv sektörünün 2026 yılında Türkiye ekonomisinin lokomotiflerinden biri olmaya devam edeceğini öngörüyor."
+},
+{
+  id: 5,
+  title: "İstanbul Film Festivali Hazırlıkları Başladı",
+  category: "Kültür",
+  date: "24 Aralık 2025",
+  img: "images/festival.png",
+  excerpt: "Bu yıl festivalde 100’den fazla film gösterilecek.",
+  content: "İstanbul Uluslararası Film Festivali için hazırlıklar resmen başladı. Organizasyon komitesi, 2026 yılında düzenlenecek festivalde 100’den fazla yerli ve yabancı filmin gösterileceğini açıkladı.\n\nFestival kapsamında özel gösterimler, yönetmen söyleşileri ve atölye çalışmaları da düzenlenecek. Dünya sinemasının önemli isimlerinin İstanbul’da ağırlanması bekleniyor.\n\nFestivalin, şehrin kültürel hayatına ve turizmine önemli katkı sağlaması hedefleniyor."
+},
+{
+  id: 6,
+  title: "Yeni Sanat Sergisi Kapılarını Açtı",
+  category: "Kültür",
+  date: "23 Aralık 2025",
+  img: "images/sanat.jpg",
+  excerpt: "Modern sanat eserleri şehrin merkezinde.",
+  content: "Şehrin merkezinde açılan modern sanat sergisi, çağdaş sanatın farklı disiplinlerinden eserleri sanatseverlerle buluşturuyor.\n\nResim, heykel ve dijital sanat çalışmalarının yer aldığı sergi, yerli ve yabancı birçok sanatçının eserlerini bir araya getiriyor. Açılışa sanat dünyasından önemli isimler katıldı.\n\nSergi, bir ay boyunca ziyaretçilere açık olacak."
+},
+{
+  id: 7,
+  title: "Süper Lig’de 17. Hafta Maçları Başladı",
+  category: "Spor",
+  date: "24 Aralık 2025",
+  img: "images/superlig.png",
+  excerpt: "Derbiler bu hafta büyük heyecanla oynanıyor.",
+  content: "Süper Lig’de 17. hafta karşılaşmaları büyük bir heyecanla başladı. Şampiyonluk yarışındaki takımlar kritik puan mücadelelerine çıktı.\n\nDerbi maçları futbolseverler tarafından yoğun ilgiyle takip edilirken, küme düşme hattındaki takımlar için de haftanın maçları büyük önem taşıyor.\n\nTeknik direktörler, sezonun ikinci yarısı öncesinde form grafiğini yükseltmeyi hedefliyor."
+},
+{
+  id: 8,
+  title: "Milli Takım Hazırlık Kampına Girdi",
+  category: "Spor",
+  date: "23 Aralık 2025",
+  img: "images/milli-takim.jpg",
+  excerpt: "Eleme maçları için Antalya’da kamp.",
+  content: "A Milli Futbol Takımı, yaklaşan dünya kupası eleme maçları öncesinde Antalya’da hazırlık kampına başladı.\n\nTeknik direktör yönetiminde gerçekleştirilen antrenmanlarda kondisyon ve taktik çalışmalara ağırlık veriliyor. Kamp süresince hazırlık maçları da oynanması planlanıyor.\n\nTeknik ekip, genç oyuncuların performansını yakından takip ediyor."
+},
+{
+  id: 9,
+  title: "Yeni Teknoloji Fuarı İstanbul’da Açıldı",
+  category: "Ekonomi",
+  date: "22 Aralık 2025",
+  img: "images/teknoloji-fuar.jpg",
+  excerpt: "Yerli teknoloji ürünleri sergilendi.",
+  content: "İstanbul’da kapılarını açan teknoloji fuarında yerli girişimler ve teknoloji firmaları ürünlerini tanıttı.\n\nYapay zeka, savunma sanayii, yazılım ve donanım alanındaki yeniliklerin öne çıktığı fuar, yatırımcılar ile girişimcileri bir araya getiriyor.\n\nFuarın, yerli teknolojinin küresel pazarlara açılmasına katkı sağlaması bekleniyor."
+},
+{
+  id: 10,
+  title: "Trafik Düzenlemesi Şehir Merkezinde Başladı",
+  category: "Gündem",
+  date: "22 Aralık 2025",
+  img: "images/trafik.jpg",
+  excerpt: "Yeni sinyal sistemi devreye alındı.",
+  content: "Şehir merkezinde hayata geçirilen yeni trafik düzenlemesi kapsamında sinyalizasyon sistemi güncellendi.\n\nBelediye yetkilileri, uygulamanın trafik yoğunluğunu azaltmayı ve yaya güvenliğini artırmayı hedeflediğini belirtti.\n\nSürücülerden yeni düzenlemelere dikkat etmeleri ve trafik işaretlerine uymaları istendi."
+}
+];
+
+const grid = document.getElementById("articles");
+
+sample.forEach(a => {
+  const d = document.createElement("div");
+  d.className = "card";
+  d.onclick = () => openArticle(a.id);
+  d.innerHTML = `
+    <img src="${a.img}">
+    <div class="card-body">
+      <h3>${a.title}</h3>
+      <p>${a.excerpt}</p>
+      <div class="meta">${a.date} • ${a.category}</div>
+    </div>
+  `;
+  grid.appendChild(d);
+});
+
+function openArticle(id) {
+  const a = sample.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById("modal-title").textContent = a.title;
+  document.getElementById("modal-meta").textContent = `${a.date} • ${a.category}`;
+  document.getElementById("modal-img").src = a.img;
+  document.getElementById("modal-content").innerHTML = `<p>${a.content}</p>`;
+  document.getElementById("overlay").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+</script>
+
+
+</body>
+</html>

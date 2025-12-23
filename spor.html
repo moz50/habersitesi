@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spor — HaberSitesi</title>
+
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#2563eb;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+.container{max-width:1100px;margin:auto;padding:20px}
+
+/* Header */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:42px;height:42px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:#fff;
+  font-weight:800;
+  display:grid;place-items:center;
+}
+nav a{
+  margin-left:16px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:var(--accent)}
+
+.page-title{font-size:28px;margin:20px 0}
+
+/* Cards */
+.card{
+  background:var(--card);
+  padding:18px;
+  border-radius:var(--radius);
+  margin-bottom:24px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 32px rgba(0,0,0,.12);
+}
+.card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+}
+.views{font-size:13px;color:var(--muted)}
+.card h3{margin:6px 0 8px}
+.card p{margin:0;color:#334155}
+
+/* Modal */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal{
+  background:var(--card);
+  max-width:900px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:var(--radius);
+  padding:20px;
+}
+.modal img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  border-radius:12px;
+  margin:14px 0;
+}
+.close-btn{
+  background:#ef4444;
+  border:none;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+footer{
+  margin:40px 0 10px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+@media(max-width:600px){
+  .card img{height:200px}
+  header{flex-direction:column;align-items:flex-start;gap:12px}
+  .modal img{height:220px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">HS</div>
+    <div>
+      <strong>HaberSitesi</strong><br>
+      <small style="color:var(--muted)">Spor</small>
+    </div>
+  </div>
+  <nav>
+    <a href="habersitesi.html">Ana Sayfa</a>
+    <a href="gundem.html">Gündem</a>
+    <a href="ekonomi.html">Ekonomi</a>
+    <a href="kultur.html">Kültür</a>
+  </nav>
+</header>
+
+<h1 class="page-title">Spor Haberleri</h1>
+
+<!-- HABERLER -->
+<article class="card" onclick="openModal(1)">
+  <img src="images/derbi.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Spor</span>
+    <span class="views">👁 42.981</span>
+  </div>
+  <h3>Derbi Günü: Büyük Maç Öncesi Nefesler Tutuldu</h3>
+  <p>Taraftarlar dev karşılaşma için saatleri sayıyor.</p>
+</article>
+
+<article class="card" onclick="openModal(2)">
+  <img src="images/antalya.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Spor</span>
+    <span class="views">👁 31.204</span>
+  </div>
+  <h3>Milli Takım Antalya Kampına Girdi</h3>
+  <p>A Milli Takım eleme maçlarına hazırlanıyor.</p>
+</article>
+
+<article class="card" onclick="openModal(3)">
+  <img src="images/basketbol.png">
+  <div class="meta">
+    <span>24 Aralık 2025 • Spor</span>
+    <span class="views">👁 28.517</span>
+  </div>
+  <h3>Basketbol Ligi’nde Haftanın Sonuçları</h3>
+  <p>Liderlik yarışı kızışıyor.</p>
+</article>
+
+<article class="card" onclick="openModal(4)">
+  <img src="images/avrupa.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Spor</span>
+    <span class="views">👁 22.906</span>
+  </div>
+  <h3>Avrupa Kupalarında Türk Takımlarının Haftası</h3>
+  <p>Temsilcilerimiz sahadan puanlarla döndü.</p>
+</article>
+
+<article class="card" onclick="openModal(5)">
+  <img src="images/madalya.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Spor</span>
+    <span class="views">👁 19.388</span>
+  </div>
+  <h3>Genç Sporculardan Uluslararası Başarı</h3>
+  <p>Türkiye’ye madalyalarla döndüler.</p>
+</article>
+
+<article class="card" onclick="openModal(6)">
+  <img src="images/superlig.png">
+  <div class="meta">
+    <span>24 Aralık 2025 • Spor</span>
+    <span class="views">👁 16.742</span>
+  </div>
+  <h3>Süper Lig’de Transfer Hareketliliği Başladı</h3>
+  <p>Kulüpler kadrolarını güçlendiriyor.</p>
+</article>
+
+<footer>© 2025 HaberSitesi — Spor</footer>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong id="modalTitle"></strong>
+      <button class="close-btn" onclick="closeModal()">Kapat</button>
+    </div>
+    <div id="modalMeta" class="meta"></div>
+    <img id="modalImg">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const news={
+1:{
+  title:"Derbi Günü: Büyük Maç Öncesi Nefesler Tutuldu",
+  meta:"24 Aralık 2025 • Spor • 👁 42.981",
+  img:"images/derbi.jpg",
+  content:"Süper Lig’de haftanın en kritik karşılaşması öncesinde şehirde büyük bir heyecan yaşanıyor.\n\nDerbi öncesinde her iki takımın taraftarları stadyum çevresinde ve şehir merkezinde yoğunluk oluştururken, güvenlik önlemleri de en üst seviyeye çıkarıldı. Teknik direktörlerin son taktik çalışmaları ve muhtemel ilk 11’ler spor kamuoyunda en çok konuşulan başlıklar arasında yer alıyor.\n\nUzmanlar, maçın ligin zirve yarışını doğrudan etkileyeceğini belirtirken, futbolseverler uzun süredir beklenen bu karşılaşma için geri sayıma geçti."
+},
+
+2:{
+  title:"Milli Takım Antalya Kampına Girdi",
+  meta:"24 Aralık 2025 • Spor • 👁 31.204",
+  img:"images/antalya.jpg",
+  content:"A Milli Futbol Takımı, önümüzdeki dönemde oynanacak eleme maçları öncesinde Antalya’da hazırlık kampına başladı.\n\nTeknik direktör yönetiminde yapılan antrenmanlarda kondisyon, taktik ve set oyunlarına ağırlık veriliyor. Kamp süresince hazırlık maçlarının da oynanması planlanırken, genç oyuncuların performansları teknik heyet tarafından yakından takip ediliyor.\n\nYetkililer, kampın takım içi uyumu artırmayı ve maç temposunu yükseltmeyi amaçladığını ifade etti."
+},
+
+3:{
+  title:"Basketbol Ligi’nde Haftanın Sonuçları",
+  meta:"24 Aralık 2025 • Spor • 👁 28.517",
+  img:"images/basketbol.png",
+  content:"Basketbol Süper Ligi’nde oynanan haftanın maçları, zirve yarışının ne kadar çekişmeli geçtiğini bir kez daha gösterdi.\n\nÜst sıralardaki takımlar galibiyet serilerini sürdürürken, orta sıralarda yer alan ekipler de play-off hattına girebilmek için kritik galibiyetler aldı. Bazı karşılaşmalar son saniyeye kadar büyük heyecana sahne oldu.\n\nBasketbol otoriteleri, ligin bu sezon son yılların en dengeli yapısına sahip olduğunu belirtiyor."
+},
+
+4:{
+  title:"Avrupa Kupalarında Türk Takımlarının Haftası",
+  meta:"24 Aralık 2025 • Spor • 👁 22.906",
+  img:"images/avrupa.jpg",
+  content:"Avrupa kupalarında mücadele eden Türk takımları, bu hafta oynadıkları karşılaşmalardan önemli puanlar çıkardı.\n\nZorlu deplasmanlardan alınan sonuçlar hem ülke puanı hem de moral açısından büyük önem taşıyor. Teknik direktörler, Avrupa arenasındaki tecrübenin lig performansına da olumlu yansıyacağını ifade etti.\n\nFutbolseverler, temsilcilerin gruplardan çıkma ihtimallerini yakından takip ediyor."
+},
+
+5:{
+  title:"Genç Sporculardan Uluslararası Başarı",
+  meta:"24 Aralık 2025 • Spor • 👁 19.388",
+  img:"images/madalya.jpg",
+  content:"Genç sporcular, katıldıkları uluslararası turnuvalarda elde ettikleri başarılarla ülkeye gurur yaşattı.\n\nFarklı branşlarda mücadele eden sporcular, altın ve gümüş madalyalar kazanarak kürsüde yer aldı. Sporcuların bu başarısı, altyapı çalışmalarının meyvelerini vermeye başladığı şeklinde yorumlandı.\n\nYetkililer, genç yeteneklere verilen desteğin artarak devam edeceğini açıkladı."
+},
+
+6:{
+  title:"Süper Lig’de Transfer Hareketliliği Başladı",
+  meta:"24 Aralık 2025 • Spor • 👁 16.742",
+  img:"images/superlig.png",
+  content:"Ara transfer döneminin yaklaşmasıyla birlikte Süper Lig kulüplerinde hareketli günler yaşanıyor.\n\nTakımlar, eksik gördükleri bölgeler için yerli ve yabancı oyuncularla temaslarını hızlandırdı. Bazı kulüplerin şimdiden anlaşma aşamasına geldiği iddia edilirken, transfer söylentileri taraftarlar arasında büyük heyecan yaratıyor.\n\nKulüp yöneticileri ise transfer sürecinde mali disipline dikkat edeceklerini vurguluyor."
+}
+};
+
+function openModal(id){
+  const n=news[id];
+  modalTitle.textContent=n.title;
+  modalMeta.textContent=n.meta;
+  modalImg.src=n.img;
+  modalContent.innerHTML=`<p>${n.content}</p>`;
+  overlay.style.display="flex";
+}
+function closeModal(){
+  overlay.style.display="none";
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
+});
+</script>
+
+</body>
+</html>

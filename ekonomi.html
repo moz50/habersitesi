@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ekonomi — HaberSitesi</title>
+
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#2563eb;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+.container{max-width:1100px;margin:auto;padding:20px}
+
+/* Header */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:42px;height:42px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:#fff;
+  font-weight:800;
+  display:grid;place-items:center;
+}
+nav a{
+  margin-left:16px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:var(--accent)}
+
+.page-title{font-size:28px;margin:20px 0}
+
+/* Cards */
+.card{
+  background:var(--card);
+  padding:18px;
+  border-radius:var(--radius);
+  margin-bottom:24px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 32px rgba(0,0,0,.12);
+}
+.card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+}
+.views{font-size:13px;color:var(--muted)}
+.card h3{margin:6px 0 8px}
+.card p{margin:0;color:#334155}
+
+/* Modal */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal{
+  background:var(--card);
+  max-width:900px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:var(--radius);
+  padding:20px;
+}
+.modal img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  border-radius:12px;
+  margin:14px 0;
+}
+.close-btn{
+  background:#ef4444;
+  border:none;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+footer{
+  margin:40px 0 10px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+@media(max-width:600px){
+  .card img{height:200px}
+  header{flex-direction:column;align-items:flex-start;gap:12px}
+  .modal img{height:220px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">HS</div>
+    <div>
+      <strong>HaberSitesi</strong><br>
+      <small style="color:var(--muted)">Ekonomi</small>
+    </div>
+  </div>
+  <nav>
+    <a href="habersitesi.html">Ana Sayfa</a>
+    <a href="gundem.html">Gündem</a>
+    <a href="kultur.html">Kültür</a>
+    <a href="spor.html">Spor</a>
+  </nav>
+</header>
+
+<h1 class="page-title">Ekonomi Haberleri</h1>
+
+<!-- HABERLER -->
+<article class="card" onclick="openModal(1)">
+  <img src="images/merkezbankası.jfif">
+  <div class="meta">
+    <span>24 Aralık 2025 • Ekonomi</span>
+    <span class="views">👁 31.420</span>
+  </div>
+  <h3>Merkez Bankası’ndan Faiz Politikası Mesajı</h3>
+  <p>Piyasalara yönelik yeni para politikası sinyalleri verildi.</p>
+</article>
+
+<article class="card" onclick="openModal(2)">
+  <img src="images/sanayi.jfif">
+  <div class="meta">
+    <span>24 Aralık 2025 • Ekonomi</span>
+    <span class="views">👁 24.885</span>
+  </div>
+  <h3>Sanayi Üretimi Kasım Ayında Yükseldi</h3>
+  <p>Sanayi üretim endeksi beklentilerin üzerinde arttı.</p>
+</article>
+
+<article class="card" onclick="openModal(3)">
+  <img src="images/dolar.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Ekonomi</span>
+    <span class="views">👁 18.203</span>
+  </div>
+  <h3>Dolar ve Euro Günü Nasıl Kapattı?</h3>
+  <p>Döviz piyasalarında gün sonu rakamları açıklandı.</p>
+</article>
+
+<article class="card" onclick="openModal(4)">
+  <img src="images/asgari.png">
+  <div class="meta">
+    <span>24 Aralık 2025 • Ekonomi</span>
+    <span class="views">👁 15.779</span>
+  </div>
+  <h3>Asgari Ücretin Ekonomiye Etkileri Tartışılıyor</h3>
+  <p>Yeni ücretin piyasa dengelerine etkisi değerlendiriliyor.</p>
+</article>
+
+<article class="card" onclick="openModal(5)">
+  <img src="images/altın.jfif">
+  <div class="meta">
+    <span>24 Aralık 2025 • Ekonomi</span>
+    <span class="views">👁 12.966</span>
+  </div>
+  <h3>Altın Fiyatlarında Dalgalı Seyir</h3>
+  <p>Ons altın ve gram altın fiyatlarında hareketlilik sürüyor.</p>
+</article>
+
+<article class="card" onclick="openModal(6)">
+  <img src="images/butce.jpg">
+  <div class="meta">
+    <span>24 Aralık 2025 • Ekonomi</span>
+    <span class="views">👁 10.344</span>
+  </div>
+  <h3>2026 Bütçesi İçin İlk Tahminler Açıklandı</h3>
+  <p>Uzmanlar bütçe hedeflerini değerlendirdi.</p>
+</article>
+
+<footer>© 2025 HaberSitesi — Ekonomi</footer>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong id="modalTitle"></strong>
+      <button class="close-btn" onclick="closeModal()">Kapat</button>
+    </div>
+    <div id="modalMeta" class="meta"></div>
+    <img id="modalImg">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const news={
+1:{
+  title:"Merkez Bankası’ndan Faiz Politikası Mesajı",
+  meta:"24 Aralık 2025 • Ekonomi • 👁 31.420",
+  img:"images/merkezbankası.jfif",
+  content:"Türkiye Cumhuriyet Merkez Bankası yetkilileri, fiyat istikrarının sağlanmasının temel öncelik olduğunu vurgulayarak mevcut faiz politikasında sıkı duruşun sürdürüleceği mesajını verdi.\n\nYapılan açıklamada, enflasyonla mücadelede kararlılığın devam ettiği ve para politikasının veri odaklı şekilde şekillendirileceği ifade edildi. Piyasalarda faiz indirim beklentilerinin kısa vadede karşılık bulmayabileceği değerlendirmeleri öne çıktı.\n\nEkonomistler, Merkez Bankası’nın mesajlarının döviz kurları ve finansal piyasalar üzerinde belirleyici olacağını belirtirken, yatırımcıların gelecek Para Politikası Kurulu toplantılarını yakından takip edeceği ifade ediliyor."
+},
+
+2:{
+  title:"Sanayi Üretimi Kasım Ayında Yükseldi",
+  meta:"24 Aralık 2025 • Ekonomi • 👁 24.885",
+  img:"images/sanayi.jfif",
+  content:"Türkiye İstatistik Kurumu’nun açıkladığı Kasım ayı verilerine göre sanayi üretimi aylık bazda artış kaydetti.\n\nÖzellikle ihracata yönelik üretim yapan sektörlerde yaşanan toparlanma, genel endeks üzerinde olumlu etki yarattı. Otomotiv, makine ve kimya sektörlerinde üretim artışları dikkat çekti.\n\nUzmanlar, küresel talepteki kısmi canlanmanın sanayi üretimine destek verdiğini belirtirken, sürdürülebilir büyüme için finansman koşullarının ve maliyetlerin yakından izlenmesi gerektiğini vurguluyor."
+},
+
+3:{
+  title:"Dolar ve Euro Günü Nasıl Kapattı?",
+  meta:"24 Aralık 2025 • Ekonomi • 👁 18.203",
+  img:"images/dolar.jpg",
+  content:"Döviz piyasalarında gün boyunca dalgalı bir seyir izlenirken, dolar ve euro kurları sınırlı hareketlerle günü tamamladı.\n\nKüresel piyasalarda ABD Merkez Bankası ve Avrupa Merkez Bankası yetkililerinin açıklamaları yatırımcıların odağında yer aldı. Jeopolitik gelişmeler ve küresel faiz beklentileri kurlar üzerinde etkili oldu.\n\nAnalistler, yıl sonuna yaklaşılırken döviz piyasalarında volatilitenin artabileceğine dikkat çekerek, yatırımcıların temkinli hareket etmesi gerektiğini ifade ediyor."
+},
+
+4:{
+  title:"Asgari Ücretin Ekonomiye Etkileri Tartışılıyor",
+  meta:"24 Aralık 2025 • Ekonomi • 👁 15.779",
+  img:"images/asgari.png",
+  content:"Açıklanan yeni asgari ücret rakamının ekonomiye etkileri, iş dünyası ve akademik çevrelerde geniş yankı uyandırdı.\n\nUzmanlar, asgari ücret artışının iç talebi canlandırabileceğini ancak maliyet baskıları nedeniyle bazı sektörlerde fiyat artışlarını tetikleyebileceğini belirtiyor. İstihdam üzerindeki etkiler de tartışma konusu olmaya devam ediyor.\n\nEkonomi yönetiminin, ücret artışlarının enflasyon üzerindeki etkisini dengelemek amacıyla ek tedbirler alabileceği ifade ediliyor."
+},
+
+5:{
+  title:"Altın Fiyatlarında Dalgalı Seyir",
+  meta:"24 Aralık 2025 • Ekonomi • 👁 12.966",
+  img:"images/altın.jfif",
+  content:"Altın fiyatları, küresel piyasalardaki belirsizlikler ve faiz beklentilerindeki değişimler nedeniyle dalgalı bir seyir izliyor.\n\nGüvenli liman talebinin dönemsel olarak arttığı görülürken, dolar endeksindeki hareketler altın fiyatları üzerinde belirleyici oluyor. Yatırımcılar, ons altın ve gram altın fiyatlarını yakından takip ediyor.\n\nAnalistler, kısa vadede fiyatlarda dalgalanmanın devam edebileceğini, orta vadede ise küresel ekonomik görünümün belirleyici olacağını belirtiyor."
+},
+
+6:{
+  title:"2026 Bütçesi İçin İlk Tahminler Açıklandı",
+  meta:"24 Aralık 2025 • Ekonomi • 👁 10.344",
+  img:"images/butce.jpg",
+  content:"Ekonomi uzmanları ve araştırma kuruluşları, 2026 yılı merkezi yönetim bütçesine ilişkin ilk tahminlerini kamuoyuyla paylaştı.\n\nBütçede kamu harcamaları, sosyal destekler ve yatırım kalemlerinin ön planda olacağı öngörülürken, gelir tarafında vergi düzenlemeleri dikkat çekiyor. Mali disiplinin korunmasının önemine vurgu yapılıyor.\n\nUzmanlar, bütçe dengelerinin sürdürülebilirliği açısından ekonomik büyüme, enflasyon ve borçlanma maliyetlerinin yakından izlenmesi gerektiğini ifade ediyor."
+}
+};
+
+function openModal(id){
+  const n=news[id];
+  modalTitle.textContent=n.title;
+  modalMeta.textContent=n.meta;
+  modalImg.src=n.img;
+  modalContent.innerHTML=`<p>${n.content}</p>`;
+  overlay.style.display="flex";
+}
+function closeModal(){
+  overlay.style.display="none";
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
+});
+</script>
+
+</body>
+</html>
